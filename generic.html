@@ -15,13 +15,36 @@
 	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+<div id="wrapper" class="fade-in">
 
-				<!-- Header -->
-					<header id="header">
-						<img src="images/personal-photo-colored.jpg" alt="Ali Omar Headshot" style="width:100%; max-width:200px; aspect-ratio:1/1; border-radius:50%; display:block; margin:0 auto; object-fit:cover;" />
-					</header>
-
+				<!-- Intro -->
+					<div id="intro">
+						<span class="logo"><img src="images/personal-photo-colored.jpg" alt="" /></span>
+						<style>
+							.profile-pic {
+								width: 200px;
+								height: 200px;
+								object-fit: cover;
+								border-radius: 50%;
+								border: 2px solid #fff;
+								box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+								display: block;
+								margin: 0 auto 1em auto;
+							}
+						</style>
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								var logo = document.querySelector("#intro .logo img");
+								if (logo) {
+									logo.classList.add("profile-pic");
+								}
+							});
+						</script>
+						
+						<h1>Ali Omar<br />
+						</h1>
+						<p>Hello, This is my portfolio, check out my <a href="https://twitter.com/ajlkn">Linkedin</a> </p>
+					</div>
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
@@ -148,12 +171,8 @@
 								</ul>
 								<h2>Interests</h2>
 								<ul>
-									<li>Open source software and Linux systems</li>
-									<li>Network infrastructure and security</li>
-									<li>Cloud computing and virtualization</li>
-									<li>Electronics and embedded systems</li>
-									<li>Traveling and exploring new cultures</li>
-									<li>Reading technology and science books</li>
+									<li>Reading non-fictional books (topics related to Sociology, Politics, and business).</li>
+									<li>Modern farming that incorportates technology, built a hydroponic fodder growing room utilizing a Mitsubishi FX3U series PLC (Programmable Logic Controller) to control irrigation, lighting, ventilation cycles and air conditioning of the unit.</li>
 								</ul>
 							</section>
 
