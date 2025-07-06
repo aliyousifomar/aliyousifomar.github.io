@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<head>
+		<title>Elements Reference - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+</head>
+<body class="is-preload">
+    		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<span class="logo"><img src="images/personal-photo-colored.jpg" alt="" /></span>
+						<style>
+							.profile-pic {
+								width: 200px;
+								height: 200px;
+								object-fit: cover;
+								border-radius: 50%;
+								border: 2px solid #fff;
+								box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+								display: block;
+								margin: 0 auto 1em auto;
+							}
+						</style>
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								var logo = document.querySelector("#intro .logo img");
+								if (logo) {
+									logo.classList.add("profile-pic");
+								}
+							});
+						</script>
+						
+						<h1>Ali Omar<br />
+						</h1>
+						<p>Hello, This is my portfolio, check out my <a href="https://www.linkedin.com/in/ali-omar-b12a4b2b/">Linkedin</a> </p>
+					</div>
+
+
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="cv.html">Curriculum Vitae</a></li>
+							<li class="active"><a href="index.html">Work Highlights</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Post details -->
+							<section class="post">
+								<article>
+									<header>
+										<h2><a href="case3.html">Integrating RHEL Servers with Active Directory for Centralized Identity Management</h2>
+									</header>
+									<a href="case2.html" class="image fit">
+										<img src="images/RHEL-AD.png" alt="Citrix infra" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
+									</a>
+									<p>
+										Integrating RHEL (Red Hat Enterprise Linux) servers with your organization's Active Directory (AD) streamlines user management and enhances security. Below is a step-by-step guide, formatted for clarity, to help you join RHEL systems to AD using standard tools and best practices.
+										<ul>
+											<li>
+												<strong>Prerequisites:</strong>
+												<ul>
+												<li>Ensure your RHEL server can resolve AD domain controllers via DNS.</li>
+												<li>Have domain admin credentials ready.</li>
+												<li>Update your system packages.</li>
+												</ul>
+											</li>
+											<li>
+												<strong>Install Required Packages:</strong>
+												<pre><code>sudo yum install sssd-ad sssd-tools realmd adcli oddjob oddjob-mkhomedir samba-common-tools</code></pre>
+											</li>
+											<li>
+												<strong>Join the Domain:</strong>
+												<pre><code>sudo realm join --user=Administrator corp.example.com</code></pre>
+											</li>
+											<ul>
+												<li>Replace <code>corp.example.com</code> with your actual domain.</li>
+												<li>Enter the AD admin password when prompted.</li>
+											</ul>
+											<li>
+												<strong>Prepare the AD security groups planned to get administrative access to the server</strong>
+												<ul>
+													<li>Ensure the AD group is created and populated with the necessary users.</li>
+													<li>Some organizations adopt a leading dash (-) with security groups naming,
+														This has caused issues when I tried to incorporate groups with a leading dash, instead create groups
+														in the following fashion <code>rhel-admins</code> in AD.</li>
+												</ul>
+											</li>
+											<li>
+												<strong>Configure SSSD:</strong>
+												<ul>
+													<li>Edit <code>/etc/sssd/sssd.conf</code> to reflect your system's setting</li>
+
+												</ul>
+												<pre><code>
+[sssd]
+domains	= corp.example.com
+config_file_version	= 2
+services = nss, pam, ssh
+#manually added
+#default_domain_suffix = True
+[domain/corp.example.com]
+ad_domain = corp.example.com
+default_shell = /bin/bash
+krb5_store_password_if_offline = True
+cache_credentials = True
+krb5_realm = corp.example.com
+realmd_tags = manages-system joined-with-adcli
+id_provider = ad
+fallback_homedir = /home/%u
+ad_domain = corp.example.com
+use_fully_qualified_names = False
+ldap_id_mapping	= True
+access_provider	= ad
+auth_provider = ad
+ad_gpo_ignore_unreadable = True
+#Allow only specific groups
+ad_access_filter = (|(memberOf=CN=Domain Admins,CN=Users,DC=corp,DC=example,DC=com)(memberOf=CN=rhel-admins,OU=AP,OU=rME,OU=Server,OU=Restricted_Groups,OU=Admin,OU=_example,DC=example,DC=corp,DC=com))
+												</code></pre>
+											</li>
+											<li>
+												<strong>Restart SSSD Service:</strong>
+												<pre><code>sudo systemctl restart sssd</code></pre>
+											</li>
+											<li>
+												This will ensure each user will enter username only without the reference to domain (such as username@domain.com)
+											</li>
+											<li>Each time a new user login completed, a home directory will be created in the following fashion <pre><code>/home/username</code></pre></li>
+											<li>
+												<strong>Set Permissions:</strong>
+												<ul>
+													<li>Ensure the <code>/etc/sssd/sssd.conf</code> file has the correct permissions:</li>
+													<pre><code>sudo chmod 600 /etc/sssd/sssd.conf</code></pre>
+												</ul>
+											</li>
+
+    </ul>
+
+									</p>
+									<ul class="actions special">
+										<li><a href="index.html" class="button primary fit">Home</a></li>
+									</ul>
+								</article>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Osnabrucker Str. 7<br />
+								Berlin, Deutscheland 10589</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="https://linkedin.com/ali-omar-b12a4b2b">Please contact me on LinkedIn</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ali.omar@umbrellanetworks.net">ali.omar@umbrellanetworks.net</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://linkedin.com/ali-omar-b12a4b2b" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/aliyousifomar" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+</body>
+</html>
