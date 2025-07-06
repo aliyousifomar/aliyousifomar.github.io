@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<head>
+		<title>Elements Reference - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+</head>
+<body class="is-preload">
+    		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<span class="logo"><img src="images/personal-photo-colored.jpg" alt="" /></span>
+						<style>
+							.profile-pic {
+								width: 200px;
+								height: 200px;
+								object-fit: cover;
+								border-radius: 50%;
+								border: 2px solid #fff;
+								box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+								display: block;
+								margin: 0 auto 1em auto;
+							}
+						</style>
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								var logo = document.querySelector("#intro .logo img");
+								if (logo) {
+									logo.classList.add("profile-pic");
+								}
+							});
+						</script>
+						
+						<h1>Ali Omar<br />
+						</h1>
+						<p>Hello, This is my portfolio, check out my <a href="https://www.linkedin.com/in/ali-omar-b12a4b2b/">Linkedin</a> </p>
+					</div>
+
+
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="cv.html">Curriculum Vitae</a></li>
+							<li class="active"><a href="index.html">Work Highlights</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Post details -->
+							<section class="post">
+								<article>
+									<header>
+										<h2><a href="case4.html">Deploying Red Hat Satellite for centralized RHEL Provisioning and Management in VMware</h2>
+									</header>
+									<a href="images/RHN-satellite.png" class="image fit"><img src="images/RHN-satellite.png" alt="Red Hat Satellite logo" /></a>
+										<p>
+											<ol>
+												<li>
+													Deploying the Red Hat Satellite VM
+													<ul>
+														<li>
+															Provision a dedicated VM<br />For Red Hat Satellite on your VMware environment. Ensure the VM meets Red Hats recommended requirements for CPU, memory, storage, and network. Refer to the official Red Hat documentation for specific requirements.<a href="https://access.redhat.com/documentation/en-us/red_hat_satellite/6.10/html-single/installation_guide/index#satellite-requirements">Red Hat Satellite Requirements</a>
+														</li>
+														<li>
+															Install Red Hat Enterprise Linux on the VM, then install and configure Red Hat Satellite.
+														</li>
+														<li>
+															Register the Satellite server with 
+															Red Hat Subscription Management and apply the necessary entitlements.
+														</li>
+													</ul>
+												<li>
+													Integrating Satellite with VMware vCenter
+													<ul>
+														<li>
+															In the Satellite web interface, go to <strong>Infrastructure > Compute Resources</strong>
+															and add your VMware vCenter as a compute resource.<br />
+															<strong>Note:</strong>Make sure you have set up a service account within VCenter with the necessary priviledges.
+														</li>
+														<li>
+															Enter the vCenter server address,service account credentials, and select the appropriate data center(s).
+														</li>
+														<li>
+															Configure network, storage, and template settings to enable Satellite to provision VMs directly in vCenter.
+														</li>
+
+
+													</ul>
+												</li>
+												<li>Automatic Provisioning of RHEL Servers
+													<ul>
+														<li>
+															Define <strong>compute profiles</strong> in Satellite to standardize VM hardware settings (CPU, RAM, disk, network).
+														</li>
+														<li>
+															Create <strong>host groups</strong> that bundle OS version, activation keys, content views, and compute profiles for consistent deployments.
+														</li>
+														<li>
+															When a new RHEL VM is needed, provision it from Satellite; the system will orchestrate VM creation in vCenter, OS deployment, and registration with Satellite.
+														</li>
+													</ul>
+												</li>
+														
+													</ul>
+												</li>
+												<li>
+													Configuring Satellite as a Local Repository
+													<ul>
+														<li>
+															In Satellite, synchronize content repositories from the Red Hat CDN to create a local mirror of RHEL packages and updates.
+														</li>
+														<li>
+															Organize content into <strong>lifecycle environments</strong> (e.g., development, QA, production) and <strong>content views</strong> to control which updates are available to which systems.
+														</li>
+														<li>
+															- Register all managed RHEL servers to Satellite so they receive updates and packages from the local repository, reducing external bandwidth usage and improving control.
+														</li>
+													</ul>
+												</li>
+												<li>
+													Patching and Security Updates
+													<ul>
+														<li>
+															Use Satellite patch management features to <strong>schedule and deploy security updates</strong> and patches to registered hosts.
+														</li>
+														<li>
+															Monitor compliance and update status through Satellite reporting tools.
+														</li>
+														<li>
+															Push or schedule updates based on host group, environment, or custom criteria, ensuring all systems remain secure and up to date.
+														</li>
+													</ul>
+												</li>
+											</ol>
+
+										</p>
+									<ul class="actions special">
+										<li><a href="index.html" class="button primary fit">Home</a></li>
+									</ul>
+								</article>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Osnabrucker Str. 7<br />
+								Berlin, Deutscheland 10589</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="https://linkedin.com/ali-omar-b12a4b2b">Please contact me on LinkedIn</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ali.omar@umbrellanetworks.net">ali.omar@umbrellanetworks.net</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://linkedin.com/ali-omar-b12a4b2b" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/aliyousifomar" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+</body>
+</html>
