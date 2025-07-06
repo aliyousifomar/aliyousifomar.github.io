@@ -66,22 +66,19 @@
 										<h2><a href="#">Disable the annoying shutdown tracker pop-up on Multi-session hosts</h2>
 									</header>
 									<a href="case2.html" class="image fit">
-										<img src="images/Citrix-infra.svg" alt="Citrix infra" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
+										<img src="images/Citrix-infra.png" alt="Citrix infra" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
 									</a>
 									<p><strong>Problem:</strong><br /> When publishing multi session hosts on Citrix infrastructure using Windows server as host OS,
 										We will be coming across an inconvienient feature that will be showing for all the users after publishing new features or as part of maintenance that will involove power-cycling the VM.
 										as shown below: <br />
 										<img src="images/power-shutdown-tracker.jpeg" alt="Shutdown tracker pop-up" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
-										<strong>Solution:</strong> <br />
-									 The solution to tackle this issue is to ensure to apply the following steps on the golden image before publishing it:
-									 <ol>
-										<li>Enter the following commands in the PowerShell with administrative rights:</li>
-										<pre><code>dsregcmd /leave</code></pre>
-										<li>Clean up any stale registration entries in the registry:</li>
-										<pre><code>Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\MDM\State" -Recurse</code></pre>
-										
-									 </ol>
-									 These steps will ensure that the golden image is not registered as a unique device in Azure Entra ID, thus preventing any registration failures when deploying the image to multiple hosts.
+										<strong>Solution:</strong> <br /> To disable this pop-up, we can use the following:
+										<ul>
+											<li>Make sure the host computer objects on the AD are located under a separate OU</li>
+											<li>Open Group policy management editor</li>
+											<li>Navigate to Computer Configuration > Policies > Administrative Templates > System > Display Shutdown Tracker and set it to disabled as shown below:</li>
+											<li><img src="images/Shutdown-tracker-gpo.png" alt="Disable shutdown tracker" style="max-width: 500px; height: auto; display: block; margin: 0 auto;" /></li>
+										</ul>
 									</p>
 									<ul class="actions special">
 										<li><a href="index.html" class="button primary fit">Home</a></li>
