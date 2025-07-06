@@ -63,13 +63,15 @@
 							<section class="post">
 								<article>
 									<header>
-										<h2><a href="#">How We Solved Azure Entra ID Registration Failures in Citrix VDI Deployments</h2>
+										<h2><a href="#">Disable the annoying shutdown tracker pop-up on Multi-session hosts</h2>
 									</header>
-									<a href="case1.html" class="image fit">
-										<img src="images/Windows11-Citrix.png" alt="Windows11 Citrix logos" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
+									<a href="case2.html" class="image fit">
+										<img src="images/Citrix-infra.svg" alt="Citrix infra" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
 									</a>
-									<p><strong>Problem:</strong><br /> Single session Windows 11 Enterprise host using Citrix infrastructure can create issues when publishing the golden image, which in turn is registered on Azure Entra ID as unique device.
-										 So, when publishing the golden image using Citrix Studio to hosts within the infrastructure, this will cause Azure Entra ID registration issues such delayed or even failed device registration. <br />
+									<p><strong>Problem:</strong><br /> When publishing multi session hosts on Citrix infrastructure using Windows server as host OS,
+										We will be coming across an inconvienient feature that will be showing for all the users after publishing new features or as part of maintenance that will involove power-cycling the VM.
+										as shown below: <br />
+										<img src="images/power-shutdown-tracker.jpeg" alt="Shutdown tracker pop-up" style="max-width: 300px; height: auto; display: block; margin: 0 auto;" />
 										<strong>Solution:</strong> <br />
 									 The solution to tackle this issue is to ensure to apply the following steps on the golden image before publishing it:
 									 <ol>
